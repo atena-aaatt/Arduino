@@ -14,7 +14,7 @@ FirebaseData firebaseData;
 /*OpenWeatherMap Bilgileri*/
 const char* weatherHost = "api.openweathermap.org";
 String city = "İstanbul,tr";
-String weatherApiKey = "840f691490dac8df7850e4b03ddb47bb";
+String weatherApiKey = "Your_Key";
 
 WiFiClient client;
 
