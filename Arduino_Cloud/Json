@@ -93,9 +93,7 @@ void loop() {
   delay(1000);
 
   if (client.connect(tshost, 80)) {
-    String gidenVeri = "api_key=" + tsapiKey;
-    gidenVeri += "&field1=" + String(temp);
-    gidenVeri += "&field2=" + String(hum);
+   String gidenVeri = "api_key=" + tsapiKey + "&field1=" + String(temp) + "&field2=" + String(hum);
 
     client.println("POST /update HTTP/1.1");
     client.println("Host: api.thingspeak.com");
