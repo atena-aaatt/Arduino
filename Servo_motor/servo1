@@ -4,23 +4,52 @@ byte motorA_geri = 12;
 byte motorB_ileri = 11;
 byte motorB_geri = 10;
 
+byte potPinA = A0;
+byte potPinB = A1;
+
+byte motorA_KontrolPin = 3;
+byte motorB_KontrolPin = 5;
+
+byte buttonA_pin = 9;
+byte buttonB_pin = 8;
+
 void setup() {
   pinMode(motorA_ileri, OUTPUT);
   pinMode(motorA_geri, OUTPUT);
   pinMode(motorB_ileri, OUTPUT);
   pinMode(motorB_geri, OUTPUT);
 
+  pinMode(motorA_KontrolPin, OUTPUT);
+  pinMode(motorB_KontrolPin, OUTPUT);
+
+  pinMode(buttonA_pin, INPUT);
+  pinMode(buttonB_pin, INPUT);
+
   Serial.begin(9600);
 }
 
 void loop() {
-  motorA_i();
-  motorB_i();
-  delay(5000);
 
-  motorA_g();
-  motorB_g();
-  delay(5000);
+  /*Motorların hızını kontrol eder*/
+  analogWrite(motorA_KontrolPin, map(analogRead(potPinA), 0, 1023, 0, 255));
+  analogWrite(motorB_KontrolPin, map(analogRead(potPinB), 0, 1023, 0, 255));
+
+  /*Butonlar ile motorları kontrol eder*/
+  if (digitalRead(buttonA_pin) == 1) {
+    motorA_i();
+    motorB_i();
+    Serial.println("ileri");
+    //delay(5000);
+  } else if (digitalRead(buttonB_pin) == 1) {
+    motorA_g();
+    motorB_g();
+    Serial.println("geri");
+    //delay(5000);
+  } else {
+    motorKapat();
+    Serial.println("kapali");
+  }
+
 }
 
 
@@ -42,4 +71,11 @@ void motorB_i() {  //motor B'yi ileri hareket ettirir.
 void motorB_g() {  //motor B'yi geri hareket ettirir.
   digitalWrite(motorB_ileri, LOW);
   digitalWrite(motorB_geri, HIGH);
+}
+
+void motorKapat() {  //motorları kapatır
+  digitalWrite(motorA_geri, LOW);
+  digitalWrite(motorA_ileri, LOW);
+  digitalWrite(motorB_geri, LOW);
+  digitalWrite(motorB_ileri, LOW);
 }
