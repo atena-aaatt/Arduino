@@ -9,7 +9,7 @@ const char* password = "12345678";  // WiFi şifresi
 // OpenWeatherMap API bilgileri
 const char* host = "api.openweathermap.org";         // OpenWeatherMap sunucu adresi
 String city = "Ankara,tr";                           // Hava durumu verisi alınacak şehir ve ülke kodu
-String apiKey = "4545f9c868f8b56ffb64c2e968e43cc4";  // API anahtarınız (herkese açık paylaşılmamalı!)
+String apiKey = "Your_KEY";  // API anahtarınız (herkese açık paylaşılmamalı!)
 
 //thingspeak bilgileri
 const char* tshost = "api.thingspeak.com";
