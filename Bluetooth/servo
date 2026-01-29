@@ -1,0 +1,35 @@
+#include <Servo.h>
+#include <SoftwareSerial.h>
+
+Servo servoMotor;
+SoftwareSerial baglanti(7, 8);  //rx, tx
+
+String gelenVeri;
+int aci;
+
+void setup() {
+  Serial.begin(9600);
+  baglanti.begin(9600);
+  servoMotor.attach(6);
+
+  servoMotor.write(0);
+}
+
+void loop() {
+  while (baglanti.available()) {
+    char gelenKarakter = baglanti.read();
+
+    if (gelenKarakter == 'n') {
+      aci = gelenVeri.toInt();
+      Serial.println("Servo acisi: " + String(aci));
+
+      if (aci >= 0 && aci <= 180) {
+        servoMotor.write(aci);
+
+        gelenVeri = "";
+      } else {
+        gelenVeri = gelenVeri + gelenKarakter;
+      }
+    }
+  }
+}
