@@ -1,0 +1,45 @@
+byte motorA_ileri = 13;
+byte motorA_geri = 12;
+
+byte motorB_ileri = 11;
+byte motorB_geri = 10;
+
+void setup() {
+  pinMode(motorA_ileri, OUTPUT);
+  pinMode(motorA_geri, OUTPUT);
+  pinMode(motorB_ileri, OUTPUT);
+  pinMode(motorB_geri, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  motorA_i();
+  motorB_i();
+  delay(5000);
+
+  motorA_g();
+  motorB_g();
+  delay(5000);
+}
+
+
+void motorA_i() {  //motor A'yı ileri hareket ettirir.
+  digitalWrite(motorA_ileri, HIGH);
+  digitalWrite(motorA_geri, LOW);
+}
+
+void motorA_g() {  //motor A'yı geri hareket ettirir.
+  digitalWrite(motorA_ileri, LOW);
+  digitalWrite(motorA_geri, HIGH);
+}
+
+void motorB_i() {  //motor B'yi ileri hareket ettirir.
+  digitalWrite(motorB_ileri, HIGH);
+  digitalWrite(motorB_geri, LOW);
+}
+
+void motorB_g() {  //motor B'yi geri hareket ettirir.
+  digitalWrite(motorB_ileri, LOW);
+  digitalWrite(motorB_geri, HIGH);
+}
